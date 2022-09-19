@@ -1,0 +1,77 @@
+/*********************************************************
+*   Diego Messina              4°H		   	  15/09/22     *
+*										                                     *
+*                                                        *
+*   funzioni di matrici e vettori                        * 
+*                                                        *
+**********************************************************/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h> 
+#include <limts.h>
+#define N 10 //dimensione vettore
+
+int menu(); 
+void caricaVettore_m(int [],int );
+void caricaVettore_c(int []);
+void caricaMatrice_m(int [][]);
+void caricaMatrice_c(int [][]);
+
+
+
+int main() {
+    int vett[N], s, a, b, r ;
+	do
+	{
+		s=menu();
+		switch(s)
+		{
+			case 0:
+				printf("Chiusura programma, grazie per aver scelto i nostri servizi!");
+				break;
+			case 1:
+				caricaVettore_m(vett);
+				break;
+			case 2:
+				printf("inserisci il minimo e il massimo:");
+				scanf("%d%d",&a,&b);
+				caricaVettore_c(vett, a, b);//completare chiedendo all'utente di inserire a e b
+				break;
+		}
+	}while(s!=0);
+    return 0;
+}
+
+int menu()
+{
+	int scelta;
+	do{
+		printf("1: Cambia colore\n");
+		printf("2: Carica array manualmente\n");
+		printf("3: Carica array casualmente\n");
+		printf("4: Stampa array\n");
+  
+		printf("0: Chiudi il programma\n");
+		scanf("%d", &scelta);
+		if(scelta<0 ||scelta>5)
+			printf("Errore! Opzione non disponibile");
+	}while(scelta<0 ||scelta>5);
+	return scelta;
+}
+
+void caricaVettori_m(int v[])//inserimento manuale
+{
+	int i;
+	printf("Inserisci %d numeri interi:\n", N);
+	for(i=0;i<N;i++)
+		scanf("%d", &v[i]);
+}
+
+void caricaVettore_c(int v[])//inserimento casuale
+{
+	int i;
+	srand(time(NULL));
+	for(i=0; i<N; i++)
+		v[i]=rand()%1000;
+}
