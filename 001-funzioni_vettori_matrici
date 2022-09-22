@@ -88,7 +88,7 @@ int main() {
 				
 			case 10:
 				stampamatrice(mat);
-		    break;
+		        break;
 				
 			case 11:
 				ordinamat(mat);
@@ -111,12 +111,13 @@ int menu()
 		printf(" 7: Stampa vettore\n");
 		printf(" 8: Carica matrice manualmente\n");
 		printf(" 9: Carica matrice casualmente\n");
-	    printf("10: Stampa matrice\n");
-	    printf("11: Ordina matrice\n");
+	        printf("10: Stampa matrice\n");
+	        printf("11: Ordina matrice\n");
 		printf(" 0: Chiudi il programma\n");
 		scanf("%d", &scelta);
 		if(scelta<0 ||scelta>11)
-			printf("Errore! Opzione non disponibile");
+	        printf("Errore! Opzione non disponibile");
+		
 	}while(scelta<0 ||scelta>11);
 	return scelta;
 }
