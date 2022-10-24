@@ -1,4 +1,3 @@
-
 /***********************************
 *   Diego Messina   4°H 10/10/22   *
 *								   *
@@ -34,20 +33,40 @@ struct s_alunno
 
 }typedef s_alunno;
 
-void carica(s_alunno[]);	//carica l array di record
-void stampa(s_alunno[]);	//stampa l array
-void media(s_alunno[]);		//calcola la media di ognistudente stampandola con il cognome
+//dichiarazione delle funzioni 
+void carica(s_alunno []);	//carica il record
+void stampa(s_alunno []);	//stampare il record 
+void Media_voti (s_alunno []);	//calcola la media di ogni studente
+int voto_alto(s_alunno []);		//cerca il voto più alto e restituisce l'indice  
+int cerca_cognome (s_alunno [],char[]);	//cerca cognome e restituisce l'indice 
+void ordina_cognomi (s_alunno []);	//ordina tutti i cognomi in ordine alfabetico
 
 int main()
 {
-	s_alunno studenti[N];
+	s_alunno studenti[N]; 
+	int r; 
+	char st[C];
 	
 	carica(studenti);
 	stampa(studenti);
-	media(studenti);
-	
-	
-	return 0;
+	Media_voti (studenti);
+	r=voto_alto(studenti);
+	printf("\t e si trova nella posizione di indice:\t%d",r);
+	printf("\ninserire il cognome che si vuole cercare:");
+	scanf("%s",st);
+	r=cerca_cognome(studenti,st);
+	if(r==-1)
+	{
+		printf("\nil cognome da te inserito non e presente nella lista");
+	}
+	else
+	{
+		printf("\nil cognome che stai cercando si trova in posizione di indice:%d",r);
+	}
+	ordina_cognomi(studenti);
+	stampa(studenti);
+
+return 0;
 }
 
 void carica(s_alunno studenti[])	
@@ -165,4 +184,3 @@ void ordina_cognomi (s_alunno studenti[])
 	}while(s!=1);
 
 }
-
