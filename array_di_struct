@@ -1,0 +1,168 @@
+
+/***********************************
+*   Diego Messina   4°H 10/10/22   *
+*								   *
+*                                  *
+*   arrey di record                * 
+*                                  *
+************************************/
+
+//inserimento librerie
+#include <stdio.h>
+#include <stdlib.h >
+#include <time.h>
+#include <string.h>
+
+#define N 5		//numero alunni
+#define M 20	//mese
+#define V 8 	//voti
+#define C 40	//cognome
+
+struct s_data
+{
+	int giorno;
+	char mese[M];
+	int anno;
+}typedef s_data;
+
+struct s_alunno
+{
+	char cognome[C];
+	int nome;
+	int voti[V];
+	s_data nascita;
+
+}typedef s_alunno;
+
+void carica(s_alunno[]);	//carica l array di record
+void stampa(s_alunno[]);	//stampa l array
+void media(s_alunno[]);		//calcola la media di ognistudente stampandola con il cognome
+
+int main()
+{
+	s_alunno studenti[N];
+	
+	carica(studenti);
+	stampa(studenti);
+	media(studenti);
+	
+	
+	return 0;
+}
+
+void carica(s_alunno studenti[])	
+{
+	int i,j;
+	srand(time(NULL));
+	for(i=0;i<N;i++)
+	{
+
+	//inserimento della stringa come cognome
+	printf("inserire il cognome dello studente.\n");
+	scanf("%s",studenti[i].cognome);
+	//inserimento voti
+	for(j=0;j<V;j++)
+	studenti[i].voti[j]=rand()%9+2;
+	//inserimento data di nascita 
+	printf("inserire la data di nascita:\n");
+	scanf("%d",&studenti[i].nascita.giorno);
+	scanf("%s",studenti[i].nascita.mese);
+	scanf("%d",&studenti[i].nascita.anno);
+	}
+}
+
+void stampa(s_alunno studenti[])
+{
+				int i,j;
+	for(i=0;i<N;i++)
+	{
+	printf("\n");
+	//stampa il cognome dello studente
+	printf("il cognome dello studente:%s\n",studenti[i].cognome);
+	//stampa la data di nascita dello studente
+	printf("lo studente e nato il:%d / %s / %d",studenti[i].nascita.giorno,studenti[i].nascita.mese,studenti[i].nascita.anno);
+	//stampa i voti dello studente
+	printf("i voti dello studente sono:\n");
+	for(j=0;j<V;j++)
+	{
+	printf("%d\n",studenti[i].voti[j]);
+	}
+	printf("\n");
+	printf("\n");
+	}
+}
+
+void media(s_alunno studenti[])
+{
+	int i,j;
+	float media=0;
+	for(i=0;i<N;i++)
+	{
+		media=0;
+	for(j=0;j<V;j++)
+	{
+	media+=studenti[i].voti[j];
+	}
+	media=media/V;
+	printf("la media dello studente %s e' %f\n",studenti[i].cognome,media);
+	}
+}
+
+int voto_alto (s_alunno studenti[])
+{
+	int i,j,max=0,t=0,s=0;
+	
+	for(i=0;i<N;i++)
+	{
+		for(j=0;j<V;j++)
+		{
+			if(studenti[i].voti[j]>max)
+			{
+				max=studenti[i].voti[j];
+				t=j;
+				s=i;
+			}
+		}
+	}
+printf("\nil voto piu alto lo ha:%s",studenti[s].cognome);
+return t;
+}
+
+int cerca_cognome (s_alunno studenti[],char s[])
+{
+	char r,i;
+	
+	for(i=0;i<N;i++)
+	{
+	r=strcmp (s,studenti[i].cognome);
+	if(r==0)
+	{
+		return i;
+	}
+    }
+	return -1;
+}
+
+void ordina_cognomi (s_alunno studenti[])
+{
+	int i,r,s=0;
+	s_alunno a;
+	
+	do
+	{
+		s=0;
+		for(i=0;i<N;i++)
+		{
+			r=strcmp(studenti[i].cognome,studenti[i+1].cognome);
+			if(r==1)
+			{
+				a=studenti[i];
+				studenti[i]=studenti[i+1];
+				studenti[i+1]=a;
+				s=1;
+			}
+		}
+	}while(s!=1);
+
+}
+
