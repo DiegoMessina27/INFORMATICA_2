@@ -1,0 +1,123 @@
+/** ****************************************************************************************
+* \mainpage <funzione cesareCrypt e cesareDecrypt>
+* @brief <Scrivere le funzioni cesareCrypt e cesareDecrypt che criptano o decriptano un file in input di una chiave key, usando l’algoritmo di Cesare.>
+* 
+* @author <Diego Messina>
+* @date <21/11/22> 
+* @version 1.0 <21/11/22> Versione iniziale
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#define M 50
+
+void crypt(char [],char []);
+void decrypt(char [],char []);
+
+int main()
+{
+
+	char st[]={"testo.txt"},st1[]={"crypt.txt"},st2[]={"decrypt.txt"};		//assegna ad ogni stringa il nome del file 
+
+	
+ 	crypt(st,st1);
+ 	
+	decrypt(st1,st2);
+
+}
+
+void crypt(char st[],char st1[])
+{
+	char c;					
+	FILE *FileIN,*FileOUT; 		
+	
+	FileIN=fopen(st,"r"); 		
+	
+	FileOUT=fopen(st1,"w");		
+	
+	if (FileIN != NULL && FileOUT != NULL)  //controlla se il puntatore è diverso da NULL 
+	{
+		while(!feof(FileIN))
+		{
+		
+			c=fgetc(FileIN);			
+			
+			if(c==' ')	
+			{
+				c=' ';
+				fputc(c,FileOUT);
+			}
+			else
+			{
+				if((c>='A' && c<='Z') || (c>='a' && c<='z'))  //controlla se c è compreso da A alla Z e da a alla z
+				{
+							
+					if(c=='X' || c=='Y' || c=='Z' || c=='x' || c=='y' || c=='z')  //controlla se c uguale a x,y, e z maiuscole e minuscole
+					{
+						c-=26;			//toglie a c 26 nel codice ascii
+					}
+					
+					c+=3;			//aggiunge a c 3 nel codice ascii
+
+				
+					fputc(c,FileOUT);		//inserisce il carattere preso da c nel file destinazione	
+				}
+			}			
+		}
+	}
+
+	else
+	{
+		printf("\nerrore in apertura file");
+		printf("\n");
+	}
+		
+	fclose(FileIN);			//chiude file iniziale
+	fclose(FileOUT);		//chiude file destinazione
+	
+}
+
+void decrypt(char st[],char st1[])
+{
+	char c;
+	FILE *FileIN,*FileOUT;
+	
+	FileIN=fopen(st,"r");
+	FileOUT=fopen(st1,"w");
+	
+	if (FileIN != NULL && FileOUT != NULL)
+	{
+		while(!feof(FileIN))
+		{
+		
+			c=fgetc(FileIN);
+			
+			if(c==' ')
+			{
+				c=' ';
+				fputc(c,FileOUT);
+			}
+			else
+			{
+				if((c>='A' && c<'Z') || (c>='a' && c<'z'))
+				{
+							
+					if(c=='A' || c=='B' || c=='C' || c=='a' || c=='b' || c=='c')  //controlla se c uguale a x,y, e z maiuscole e minuscole
+					{
+						c+=26;			//aggiunge a c 26 nel codice ascii
+					}
+					
+					c-=3;			//toglie a c 3 nel codice ascii
+
+				
+					fputc(c,FileOUT);		//inserisce il carattere preso da c nel file destinazione
+				}
+			}
+		}
+	}
+	else
+	{
+		printf("\nerrore in apertura file");
+		printf("\n");
+	}
+}
