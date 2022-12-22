@@ -2,11 +2,11 @@
 * \mainpage <file_record.c>                                                                *
 *                                                                                          *
 * @brief <programma che contiene cinque funzione                                           *
-*	la prima che carica il file di record;                                                 *
-*	il secondo lo stampa;                                                                  *
-*	la terza che cerca un cognome e stampa;                                                *
-*	la quarta corregge con il cognome di un record con un altro;                           *
-*	la quinta restituisce il numero di record nel file;                                    *
+*	la prima che carica il file di record;                                             *
+*	il secondo lo stampa;                                                              *
+*	la terza che cerca un cognome e stampa;                                            *
+*	la quarta corregge con il cognome di un record con un altro;                       *
+*	la quinta restituisce il numero di record nel file;                                *
 *                                                                                          *
 * @author <Diego Messina>                                                                  *
 * @date <21/11/22>                                                                         *
@@ -119,9 +119,9 @@ int main()
 *                                                                                          *
 * @brief <funzione che permette di caricare un file di record>                             *
 *                                                                                          *
-* @author <Diego Messina>                                                                *
+* @author <Diego Messina>                                                                  *
 * @date <21/11/22>                                                                         *
-* @version 1.0 <21/12/22> Versione iniziale                                                
+* @version 1.0 <21/12/22> Versione iniziale                                                *
 *******************************************************************************************/
 void carica(char st[], int dim)
 {
@@ -235,7 +235,7 @@ void ricerca(char st[],char cognome[], int dim)
 * \mainpage <file_record.c>                                                                *
 *                                                                                          *
 * @brief <funzione che stampa le informazioni presenti in un record>                       *      
-*          <restituendo 0 se è presente,-1 se non esistente>                               *
+*          <restituendo 0 se Ã¨ presente,-1 se non esistente>                               *
 *                                                                                          *
 * @author <Diego Messina>                                                                  *
 * @date <21/12/22>                                                                         *
