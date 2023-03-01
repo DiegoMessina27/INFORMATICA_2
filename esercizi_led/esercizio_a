@@ -1,0 +1,66 @@
+
+// Classe LED
+class LED {
+  private:
+    int pin; // Pin del LED
+ 	int stato;
+  public:
+    // Costruttore: imposta la modalità del pin del LED come output
+    LED(int p) {
+      pin = p;
+      pinMode(pin, OUTPUT);
+    }
+
+    // Metodo per accendere il LED
+    void accendi() {
+      digitalWrite(pin, HIGH);
+      stato=1;
+    }
+
+    // Metodo per spegnere il LED
+    void spegni() {
+      digitalWrite(pin, LOW);
+      stato=0;
+    }
+  
+  	void inverti(){
+      if(stato==0)
+        accendi();
+      else
+     	spegni();
+    }
+  
+      void lampeggio(int nlamp){
+        for(int i=0;i<nlamp;i++)
+        {
+          accendi();
+          delay(500);
+          spegni();
+          delay(500);
+        }
+  	  }
+  
+  	void test(int ntest){
+    	lampeggio(ntest); 
+ 	}
+      
+};
+
+// Crea un oggetto LED sulla porta 13
+LED led(11);
+
+void setup() {
+  // Non c'è nulla da fare qui
+  led.accendi();
+  led.lampeggio(10);
+  led.test(10);
+}
+
+void loop() {
+  // inverte lo stato del LED
+  led.inverti();
+
+  // Aspetta per un secondo
+  delay(1000);
+
+}
