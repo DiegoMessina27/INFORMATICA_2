@@ -1,0 +1,105 @@
+//https://www.tinkercad.com/things/gj1P9k4Na9u?sharecode=OT7bgV1jrDuAOeFmiUYXAwnJJ-CyykULMH6EAkahIOI
+
+// Classe LED
+class LED {
+  private:
+    int pin; // Pin del LED
+ 	int stato;
+  public:
+    // Costruttore: imposta la modalità del pin del LED come output
+    LED(int p) {
+      pin = p;
+      pinMode(pin, OUTPUT);
+    }
+
+    // Metodo per accendere il LED
+    void accendi() {
+      digitalWrite(pin, HIGH);
+      stato=1;
+    }
+
+    // Metodo per spegnere il LED
+    void spegni() {
+      digitalWrite(pin, LOW);
+      stato=0;
+    }
+  
+  	void inverti(){
+      if(stato==0)
+        accendi();
+      else
+     	spegni();
+    }
+  
+      void lampeggio(int nlamp){
+        for(int i=0;i<nlamp;i++)
+        {
+          accendi();
+          delay(100);
+          spegni();
+          delay(100);
+        }
+  	  }
+  
+  	void test(int ntest){
+    	lampeggio(ntest); 
+ 	}
+   
+};
+
+class Pulsante {
+ private:
+  int pin;
+  
+ public:
+  Pulsante(int porta) {
+  	pin = porta;
+    pinMode(pin, INPUT_PULLUP);
+  }
+
+
+  int press()
+  {
+    if(digitalRead(pin)==LOW){
+      return 1;
+    } else {
+      return 0;
+    }
+
+  }
+  int click()
+  {
+    if(digitalRead(pin)==LOW){
+    return 1;}
+    else{
+	return 0;}
+
+  }
+
+};
+
+// Crea un oggetto LED sulla porta 13
+LED ledV(12);
+LED ledB(13);
+Pulsante puls(2);
+
+void setup() {
+  ledV.test(5);
+  ledB.test(10);
+}
+
+void loop() {
+  if (puls.press()) {
+    ledB.accendi();
+  } else {
+    ledB.spegni();
+  }
+  
+  if(puls.click())
+  { delay(500);
+    ledV.accendi();}
+  else {
+    ledV.spegni();
+  }
+
+}
