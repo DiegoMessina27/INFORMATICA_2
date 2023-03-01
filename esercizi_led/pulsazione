@@ -1,5 +1,3 @@
-//https://www.tinkercad.com/things/gj1P9k4Na9u?sharecode=OT7bgV1jrDuAOeFmiUYXAwnJJ-CyykULMH6EAkahIOI
-
 // Classe LED
 class LED {
   private:
